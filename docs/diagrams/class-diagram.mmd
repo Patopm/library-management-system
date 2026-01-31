@@ -1,0 +1,156 @@
+---
+title: Library Management System - Class Diagram
+---
+classDiagram
+    direction TB
+    
+    class Book {
+        -Long id
+        -String title
+        -String author
+        -String isbn
+        -int publicationYear
+        -Genre genre
+        +getters()
+        +setters()
+    }
+    
+    class Genre {
+        <<enumeration>>
+        FICTION
+        SCIENCE_FICTION
+        MYSTERY
+        BIOGRAPHY
+        HISTORY
+        TECHNOLOGY
+    }
+    
+    class BookStock {
+        -Long id
+        -Book book
+        -int totalQuantity
+        -int availableQuantity
+        -BookStockStrategy strategy
+        +canLend() boolean
+        +lend() boolean
+        +return() void
+        +getAvailabilityStatus() String
+        +setStrategy(BookStockStrategy)
+        +getters()
+        +setters()
+    }
+    
+    class BookStockStrategy {
+        <<interface>>
+        +calculateAvailability(int total, int available) double
+        +validateLoan(int currentAvailable) boolean
+        +getStrategyName() String
+        +getMaxLoanDays() int
+    }
+    
+    class FictionStockStrategy {
+        +calculateAvailability(int total, int available) double
+        +validateLoan(int currentAvailable) boolean
+        +getStrategyName() String
+        +getMaxLoanDays() int
+    }
+    
+    class SciFiStockStrategy {
+        +calculateAvailability(int total, int available) double
+        +validateLoan(int currentAvailable) boolean
+        +getStrategyName() String
+        +getMaxLoanDays() int
+    }
+    
+    class MysteryStockStrategy {
+        +calculateAvailability(int total, int available) double
+        +validateLoan(int currentAvailable) boolean
+        +getStrategyName() String
+        +getMaxLoanDays() int
+    }
+    
+    class Member {
+        -Long id
+        -String fullName
+        -String email
+        -String phone
+        -LocalDate joinDate
+        -boolean active
+        +hasActiveLoans() boolean
+        +getActiveLoanCount() int
+        +getters()
+        +setters()
+    }
+    
+    class Loan {
+        -Long id
+        -Member member
+        -BookStock bookStock
+        -LocalDate loanDate
+        -LocalDate dueDate
+        -LocalDate returnDate
+        -BigDecimal overdueFee
+        -LoanStatus status
+        +calculateOverdueFee() BigDecimal
+        +isOverdue() boolean
+        +markAsReturned()
+        +getters()
+        +setters()
+    }
+    
+    class LoanStatus {
+        <<enumeration>>
+        ACTIVE
+        RETURNED
+        OVERDUE
+    }
+    
+    class LibraryService {
+        -BookDAO bookDAO
+        -MemberDAO memberDAO
+        -LoanDAO loanDAO
+        -BookStockDAO stockDAO
+        +createBook(Book) void
+        +updateBook(Book) void
+        +deleteBook(Long) boolean
+        +createMember(Member) void
+        +createLoan(Long memberId, Long stockId) Loan
+        +processReturn(Long loanId) void
+        +searchBooks(String keyword) List~Book~
+        +getOverdueLoans() List~Loan~
+    }
+    
+    class ReportGenerator {
+        -LoanDAO loanDAO
+        -BookStockDAO stockDAO
+        -MemberDAO memberDAO
+        +generateLoanReport(String filePath) void
+        +generateInventoryReport(String filePath) void
+        +generateMemberReport(String filePath) void
+        -exportToCSV(List~?~, String) void
+    }
+    
+    class ValidationException {
+        +ValidationException(String message)
+    }
+    
+    Book "1" --> "1" Genre : has
+    BookStock "1" --> "1" Book : manages
+    BookStock "1" --> "1" BookStockStrategy : uses
+    BookStockStrategy <|.. FictionStockStrategy : implements
+    BookStockStrategy <|.. SciFiStockStrategy : implements
+    BookStockStrategy <|.. MysteryStockStrategy : implements
+    
+    Member "1" --> "*" Loan : has
+    Loan "*" --> "1" BookStock : references
+    Loan "1" --> "1" LoanStatus : has
+    
+    LibraryService ..> Book : manages
+    LibraryService ..> Member : manages
+    LibraryService ..> Loan : manages
+    LibraryService ..> BookStock : manages
+    LibraryService ..> ValidationException : throws
+    
+    ReportGenerator ..> Loan : reads
+    ReportGenerator ..> BookStock : reads
+    ReportGenerator ..> Member : reads

@@ -1,0 +1,68 @@
+---
+title: Library Management System - Use Case Overview
+---
+graph LR
+    %% Define Nodes
+    L[Librarian]
+    
+    %% Group use cases by domain
+    subgraph Books[Book Management]
+        A1[Add Book]
+        A2[Edit Book]
+        A3[Delete Book]
+        A4[Search Books]
+    end
+    
+    subgraph Stock[Book Stock Management]
+        B1[Configure Stock Strategy]
+        B2[View Stock Levels]
+        B3[Update Stock Quantity]
+    end
+    
+    subgraph Members[Member Management]
+        C1[Add Member]
+        C2[Edit Member]
+        C3[Delete Member]
+        C4[View Member History]
+    end
+    
+    subgraph Loans[Loan Management]
+        D1[Create Loan]
+        D2[Process Return]
+        D3[View Active Loans]
+        D4[Calculate Overdue Fees]
+    end
+    
+    subgraph Reports[Reports and Exports]
+        E1[Generate Reports]
+        E2[Export to CSV]
+        E3[View Statistics]
+    end
+
+    %% Relationships from Librarian
+    L --> A1
+    L --> A2
+    L --> A3
+    L --> A4
+    
+    L --> B1
+    L --> B2
+    L --> B3
+    
+    L --> C1
+    L --> C2
+    L --> C3
+    L --> C4
+    
+    L --> D1
+    L --> D2
+    L --> D3
+    L --> D4
+    
+    L --> E1
+    L --> E2
+    L --> E3
+    
+    %% Notes and Constraints
+    classDef actor fill:#E6F2FF,stroke:#0074D9,color:#004080,font-weight:bold;
+    class L actor;

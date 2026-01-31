@@ -1,0 +1,60 @@
+---
+title: Library Management System - Sequence Diagram (Loan Creation)
+---
+sequenceDiagram
+    actor Librarian
+    participant UI as Lanterna UI
+    participant Service as LibraryService
+    participant Validator as ValidationService
+    participant LoanDAO as LoanDAO
+    participant StockDAO as BookStockDAO
+    participant DB as SQLite DB
+    
+    Librarian->>UI: Select "Create Loan"
+    UI->>UI: Display Member Selection
+    Librarian->>UI: Select Member
+    UI->>UI: Display Available Books
+    Librarian->>UI: Select BookStock
+    UI->>Service: createLoan(memberId, stockId)
+    
+    Service->>StockDAO: findById(stockId)
+    StockDAO->>DB: SELECT
+    DB-->>StockDAO: BookStock
+    StockDAO-->>Service: BookStock
+    
+    Service->>Validator: validateMember(memberId)
+    Validator->>DB: Check active loans
+    DB-->>Validator: loan count
+    
+    alt Member has too many loans
+        Validator-->>Service: ValidationException
+        Service-->>UI: Error: Loan limit reached
+        UI-->>Librarian: Show error
+    else Member valid
+        Validator-->>Service: Valid
+        
+        Service->>BookStock: canLend()
+        BookStock->>BookStockStrategy: validateLoan(available)
+        BookStockStrategy-->>BookStock: true/false
+        
+        alt Stock not available
+            BookStock-->>Service: false
+            Service-->>UI: Error: Book not available
+            UI-->>Librarian: Show error
+        else Stock available
+            BookStock-->>Service: true
+            
+            Service->>LoanDAO: save(new Loan)
+            LoanDAO->>DB: INSERT
+            DB-->>LoanDAO: Success
+            LoanDAO-->>Service: Loan
+            
+            Service->>BookStock: lend()
+            BookStock->>StockDAO: update()
+            StockDAO->>DB: UPDATE
+            DB-->>StockDAO: Success
+            
+            Service-->>UI: Loan created successfully
+            UI-->>Librarian: Show confirmation
+        end
+    end
