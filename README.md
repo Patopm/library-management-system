@@ -81,7 +81,7 @@ library-management-system/
     ├── main/
     │   ├── java/
     │   │   └── com/library/
-    │   │       ├── Main.java     # Entry Point
+    │   │       ├── App.java      # Entry Point
     │   │       ├── config/       # Hibernate & DB Setup
     │   │       ├── dao/          # Data Access Objects
     │   │       ├── model/        # JPA Entities & Strategies
@@ -118,7 +118,7 @@ library-management-system/
 3. **Run the application**:
 
    ```bash
-   mvn exec:java -Dexec.mainClass="com.library.Main"
+   mvn exec:java -Dexec.mainClass="com.library.App"
    ```
 
 ## Usage
