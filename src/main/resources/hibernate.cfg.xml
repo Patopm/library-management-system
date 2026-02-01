@@ -18,11 +18,9 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Entity Mappings -->
-        <!--
         <mapping class="com.library.model.Book"/>
         <mapping class="com.library.model.Member"/>
         <mapping class="com.library.model.Loan"/>
         <mapping class="com.library.model.BookStock"/>
-        -->
     </session-factory>
 </hibernate-configuration>
