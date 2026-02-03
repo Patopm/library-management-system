@@ -1,10 +1,10 @@
-package main.java.com.library.service;
+package com.library.service;
 
-import main.java.com.library.dao.BookStockDAO;
-import main.java.com.library.dao.LoanDAO;
-import main.java.com.library.model.BookStock;
-import main.java.com.library.model.Loan;
-import main.java.com.library.util.ExportUtil;
+import com.library.dao.BookStockDAO;
+import com.library.dao.LoanDAO;
+import com.library.model.BookStock;
+import com.library.model.Loan;
+import com.library.util.ExportUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

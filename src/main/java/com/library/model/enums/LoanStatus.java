@@ -1,4 +1,4 @@
-package main.java.com.library.model.enums;
+package com.library.model.enums;
 
 public enum LoanStatus {
     ACTIVE,

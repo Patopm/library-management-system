@@ -1,6 +1,6 @@
-package main.java.com.library.dao;
+package com.library.dao;
 
-import main.java.com.library.model.Member;
+import com.library.model.Member;
 
 public class MemberDAO extends GenericDAO<Member> {
     public MemberDAO() {

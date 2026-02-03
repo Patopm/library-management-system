@@ -1,6 +1,6 @@
-package main.java.com.library.model;
+package com.library.model;
 
-import main.java.com.library.model.strategy.*;
+import com.library.model.strategy.*;
 import jakarta.persistence.*;
 
 @Entity

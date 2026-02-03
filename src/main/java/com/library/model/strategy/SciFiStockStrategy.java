@@ -1,4 +1,4 @@
-package main.java.com.library.model.strategy;
+package com.library.model.strategy;
 
 public class SciFiStockStrategy implements BookStockStrategy {
     @Override

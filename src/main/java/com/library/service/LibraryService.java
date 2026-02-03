@@ -1,8 +1,8 @@
-package main.java.com.library.service;
+package com.library.service;
 
-import main.java.com.library.dao.*;
-import main.java.com.library.model.*;
-import main.java.com.library.model.enums.LoanStatus;
+import com.library.dao.*;
+import com.library.model.*;
+import com.library.model.enums.LoanStatus;
 import java.time.LocalDate;
 
 public class LibraryService {

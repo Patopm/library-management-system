@@ -1,6 +1,6 @@
-package main.java.com.library.dao;
+package com.library.dao;
 
-import main.java.com.library.config.HibernateConfig;
+import com.library.config.HibernateConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;

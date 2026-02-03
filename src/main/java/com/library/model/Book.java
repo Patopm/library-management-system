@@ -1,6 +1,6 @@
-package main.java.com.library.model;
+package com.library.model;
 
-import main.java.com.library.model.enums.Genre;
+import com.library.model.enums.Genre;
 import jakarta.persistence.*;
 
 @Entity

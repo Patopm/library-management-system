@@ -1,4 +1,4 @@
-package main.java.com.library.config;
+package com.library.config;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

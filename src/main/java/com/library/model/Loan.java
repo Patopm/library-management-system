@@ -1,6 +1,6 @@
-package main.java.com.library.model;
+package com.library.model;
 
-import main.java.com.library.model.enums.LoanStatus;
+import com.library.model.enums.LoanStatus;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 

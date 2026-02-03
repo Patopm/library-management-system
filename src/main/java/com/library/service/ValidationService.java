@@ -1,8 +1,8 @@
-package main.java.com.library.service;
+package com.library.service;
 
-import main.java.com.library.dao.LoanDAO;
-import main.java.com.library.model.BookStock;
-import main.java.com.library.model.Member;
+import com.library.dao.LoanDAO;
+import com.library.model.BookStock;
+import com.library.model.Member;
 
 public class ValidationService {
     private final LoanDAO loanDAO = new LoanDAO();

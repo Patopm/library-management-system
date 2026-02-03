@@ -1,4 +1,4 @@
-package main.java.com.library.model;
+package com.library.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -23,4 +23,6 @@ public class Member {
     public void setFullName(String fullName) { this.fullName = fullName; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public LocalDate getJoinDate() { return joinDate; }
+    public void setJoinDate(LocalDate joinDate) { this.joinDate = joinDate; }
 }

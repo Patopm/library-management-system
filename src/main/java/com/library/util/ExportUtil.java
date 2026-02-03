@@ -1,4 +1,4 @@
-package main.java.com.library.util;
+package com.library.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

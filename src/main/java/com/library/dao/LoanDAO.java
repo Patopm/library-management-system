@@ -1,8 +1,8 @@
-package main.java.com.library.dao;
+package com.library.dao;
 
-import main.java.com.library.model.Loan;
-import main.java.com.library.model.enums.LoanStatus;
-import main.java.com.library.config.HibernateConfig;
+import com.library.model.Loan;
+import com.library.model.enums.LoanStatus;
+import com.library.config.HibernateConfig;
 import org.hibernate.Session;
 import java.util.List;
 

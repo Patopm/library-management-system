@@ -1,6 +1,6 @@
-package main.java.com.library.dao;
+package com.library.dao;
 
-import main.java.com.library.model.Book;
+import com.library.model.Book;
 
 public class BookDAO extends GenericDAO<Book> {
     public BookDAO() {
