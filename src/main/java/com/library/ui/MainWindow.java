@@ -18,16 +18,8 @@ public class MainWindow {
         this.screen = new DefaultTerminalFactory().createScreen();
         this.screen.startScreen();
 
-        Theme customTheme = SimpleTheme.makeTheme(
-                true,
-                TextColor.ANSI.WHITE,
-                TextColor.ANSI.BLACK,
-                TextColor.ANSI.BLACK,
-                TextColor.ANSI.BLACK,
-                TextColor.ANSI.GREEN,
-                TextColor.ANSI.BLACK,
-                TextColor.ANSI.WHITE
-        );
+        SimpleTheme customTheme = new SimpleTheme(TextColor.ANSI.WHITE, TextColor.ANSI.BLACK);
+        customTheme.addOverride(TextBox.class, TextColor.ANSI.WHITE, TextColor.ANSI.BLACK);
 
         this.gui = new MultiWindowTextGUI(
                 screen,

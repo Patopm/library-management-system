@@ -15,7 +15,7 @@ public class FormBuilder {
 
     public void addField(String label, String key) {
         panel.addComponent(new Label(label));
-        TextBox textBox = new TextBox(new TerminalSize(30, 1));
+        TextBox textBox = new TextBox(new TerminalSize(30, 1), "", TextBox.Style.SINGLE_LINE);
         panel.addComponent(textBox);
         fields.put(key, textBox);
     }
