@@ -40,6 +40,8 @@ public class BookStock {
     public Long getId() { return id; }
     public Book getBook() { return book; }
     public void setBook(Book book) { this.book = book; }
+    public int getTotalQuantity() { return totalQuantity; }
+    public void setTotalQuantity(int qty) { this.totalQuantity = qty; }
     public int getAvailableQuantity() { return availableQuantity; }
     public void setAvailableQuantity(int qty) { this.availableQuantity = qty; }
     public BookStockStrategy getStrategy() { return strategy; }
