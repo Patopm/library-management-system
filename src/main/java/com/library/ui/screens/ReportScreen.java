@@ -1,26 +1,17 @@
 package com.library.ui.screens;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import java.util.concurrent.atomic.AtomicBoolean;
-import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.Button;
+import com.googlecode.lanterna.gui2.MultiWindowTextGUI;
+import com.googlecode.lanterna.gui2.Panel;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialog;
 import com.library.service.ReportGenerator;
 
-public class ReportScreen extends BasicWindow {
+public class ReportScreen extends AbstractScreenWindow {
     private final ReportGenerator reportGenerator = new ReportGenerator();
 
     public ReportScreen(MultiWindowTextGUI gui) {
-        super("System Reports");
-        this.addWindowListener(new WindowListenerAdapter() {
-            @Override
-            public void onInput(Window window, KeyStroke keyStroke, AtomicBoolean deliverEvent) {
-                if (keyStroke.getKeyType() == KeyType.Escape) {
-                    window.close();
-                }
-            }
-        });
-        Panel panel = new Panel(new LinearLayout());
+        super("System Reports", gui);
+        Panel panel = createVerticalContent();
 
         panel.addComponent(new Button("Export Inventory CSV", () -> {
             try {
@@ -31,7 +22,17 @@ public class ReportScreen extends BasicWindow {
             }
         }));
 
-        panel.addComponent(new Button("Back", this::close));
+        panel.addComponent(new Button("Export Loans CSV", () -> {
+            try {
+                String file = reportGenerator.generateLoanReport();
+                MessageDialog.showMessageDialog(gui, "Success", "Exported to: " + file);
+            } catch (Exception e) {
+                MessageDialog.showMessageDialog(gui, "Error", e.getMessage());
+            }
+        }));
+
+        panel.addComponent(createActionRow(new Button("Back", this::close)));
+        panel.addComponent(createHintLabel("Press ESC to return to main menu."));
         setComponent(panel);
     }
 }

@@ -1,5 +1,6 @@
 package com.library.ui.components;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,13 +15,13 @@ public class FormBuilder {
 
     public void addField(String label, String key) {
         panel.addComponent(new Label(label));
-        TextBox textBox = new TextBox();
+        TextBox textBox = new TextBox(new TerminalSize(30, 1));
         panel.addComponent(textBox);
         fields.put(key, textBox);
     }
 
     public String getValue(String key) {
-        return fields.get(key).getText();
+        return fields.get(key).getText().trim();
     }
 
     public Panel getPanel() {

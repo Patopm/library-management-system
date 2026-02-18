@@ -118,7 +118,7 @@ library-management-system/
 3. **Run the application**:
 
    ```bash
-   mvn exec:java -Dexec.mainClass="com.library.App"
+   mvn exec:java -Dexec.mainClass="com.library.Main"
    ```
 
 ## Usage

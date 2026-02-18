@@ -20,19 +20,19 @@ public class MainWindow {
 
         Theme customTheme = SimpleTheme.makeTheme(
                 true,
-                TextColor.ANSI.WHITE,     // Foreground
-                TextColor.ANSI.BLUE,      // Background
-                TextColor.ANSI.CYAN,      // Editable background
-                TextColor.ANSI.BLACK,     // Focus foreground
-                TextColor.ANSI.YELLOW,    // Focus background
-                TextColor.ANSI.BLUE,      // Post-renderer background
-                TextColor.ANSI.DEFAULT    // Post-renderer foreground
+                TextColor.ANSI.WHITE,
+                TextColor.ANSI.BLACK,
+                TextColor.ANSI.BLACK,
+                TextColor.ANSI.BLACK,
+                TextColor.ANSI.GREEN,
+                TextColor.ANSI.BLACK,
+                TextColor.ANSI.WHITE
         );
 
         this.gui = new MultiWindowTextGUI(
                 screen,
                 new DefaultWindowManager(),
-                new EmptySpace(TextColor.ANSI.BLUE)
+                new EmptySpace(TextColor.ANSI.BLACK)
         );
         
         this.gui.setTheme(customTheme);
@@ -40,7 +40,7 @@ public class MainWindow {
 
     public void start() {
         MainMenuScreen mainMenu = new MainMenuScreen(gui);
-        mainMenu.setHints(Arrays.asList(Window.Hint.CENTERED, Window.Hint.FIT_TERMINAL_WINDOW));
+        mainMenu.setHints(Arrays.asList(Window.Hint.FULL_SCREEN));
         
         gui.addWindowAndWait(mainMenu);
         
