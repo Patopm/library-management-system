@@ -27,6 +27,7 @@ public class BookStock {
         if (book == null) return;
         this.strategy = switch (book.getGenre()) {
             case SCIENCE_FICTION -> new SciFiStockStrategy();
+            case MYSTERY -> new MysteryStockStrategy();
             default -> new FictionStockStrategy();
         };
     }
@@ -38,6 +39,7 @@ public class BookStock {
 
     // Getters and Setters
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     public Book getBook() { return book; }
     public void setBook(Book book) { this.book = book; }
     public int getTotalQuantity() { return totalQuantity; }
@@ -45,4 +47,5 @@ public class BookStock {
     public int getAvailableQuantity() { return availableQuantity; }
     public void setAvailableQuantity(int qty) { this.availableQuantity = qty; }
     public BookStockStrategy getStrategy() { return strategy; }
+    public void setStrategy(BookStockStrategy strategy) { this.strategy = strategy; }
 }

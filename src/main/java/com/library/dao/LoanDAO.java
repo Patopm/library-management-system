@@ -20,4 +20,16 @@ public class LoanDAO extends GenericDAO<Loan> {
                 .list();
         }
     }
+
+    public long countActiveByStock(Long stockId) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+            return session.createQuery(
+                    "select count(l.id) from Loan l where l.bookStock.id = :stockId and l.status = :status",
+                    Long.class)
+                .setParameter("stockId", stockId)
+                .setParameter("status", LoanStatus.ACTIVE)
+                .uniqueResultOptional()
+                .orElse(0L);
+        }
+    }
 }

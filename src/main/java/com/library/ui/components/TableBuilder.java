@@ -8,6 +8,8 @@ public final class TableBuilder {
 
     public static Table<String> createEntityTable(String title, String... headers) {
         Table<String> table = new Table<>(headers);
+        table.setVisibleRows(14);
+        table.setCellSelection(false);
         table.setSelectAction(() -> {}); // Placeholder for selection logic
         return table;
     }

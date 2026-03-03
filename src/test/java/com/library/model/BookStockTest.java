@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.library.model.enums.Genre;
 import com.library.model.strategy.FictionStockStrategy;
+import com.library.model.strategy.MysteryStockStrategy;
 import com.library.model.strategy.SciFiStockStrategy;
 import org.junit.jupiter.api.Test;
 
@@ -25,9 +26,22 @@ class BookStockTest {
     }
 
     @Test
-    void canBeLentUsesFictionStrategyAsDefault() {
+    void canBeLentUsesMysteryStrategyWhenGenreIsMystery() {
         Book book = new Book();
         book.setGenre(Genre.MYSTERY);
+
+        BookStock stock = new BookStock();
+        stock.setBook(book);
+        stock.setAvailableQuantity(6);
+
+        assertTrue(stock.canBeLent()); // Mystery strategy requires >5 copies
+        assertInstanceOf(MysteryStockStrategy.class, stock.getStrategy());
+    }
+
+    @Test
+    void canBeLentUsesFictionStrategyAsDefaultForOtherGenres() {
+        Book book = new Book();
+        book.setGenre(Genre.BIOGRAPHY);
 
         BookStock stock = new BookStock();
         stock.setBook(book);

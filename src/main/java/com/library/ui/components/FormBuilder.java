@@ -24,6 +24,13 @@ public class FormBuilder {
         return fields.get(key).getText().trim();
     }
 
+    public void setValue(String key, String value) {
+        TextBox field = fields.get(key);
+        if (field != null) {
+            field.setText(value == null ? "" : value);
+        }
+    }
+
     public Panel getPanel() {
         return panel;
     }

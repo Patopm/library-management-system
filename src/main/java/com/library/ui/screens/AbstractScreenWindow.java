@@ -10,6 +10,7 @@ import com.googlecode.lanterna.gui2.Label;
 import com.googlecode.lanterna.gui2.LinearLayout;
 import com.googlecode.lanterna.gui2.MultiWindowTextGUI;
 import com.googlecode.lanterna.gui2.Panel;
+import com.googlecode.lanterna.gui2.Separator;
 import com.googlecode.lanterna.gui2.Window;
 import com.googlecode.lanterna.gui2.WindowListenerAdapter;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -39,6 +40,17 @@ public abstract class AbstractScreenWindow extends BasicWindow {
         return new Panel(new LinearLayout(Direction.VERTICAL));
     }
 
+    protected Panel createScreenHeader(String title, String subtitle) {
+        Panel header = createVerticalContent();
+        header.addComponent(new Label(title).addStyle(SGR.BOLD).addStyle(SGR.UNDERLINE));
+        if (subtitle != null && !subtitle.isBlank()) {
+            header.addComponent(new Label(subtitle));
+        }
+        header.addComponent(new Separator(Direction.HORIZONTAL)
+                .setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Fill)));
+        return header;
+    }
+
     protected Panel createActionRow(Button... buttons) {
         Panel row = new Panel(new LinearLayout(Direction.HORIZONTAL));
         for (int i = 0; i < buttons.length; i++) {
@@ -52,5 +64,9 @@ public abstract class AbstractScreenWindow extends BasicWindow {
 
     protected Label createHintLabel(String text) {
         return new Label(text).addStyle(SGR.BOLD);
+    }
+
+    protected EmptySpace createVerticalGap() {
+        return new EmptySpace(new TerminalSize(0, 1));
     }
 }

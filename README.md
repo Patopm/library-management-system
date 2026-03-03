@@ -17,6 +17,7 @@ A standalone Terminal User Interface (TUI) application designed for librarians t
   - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+    - [Using just (Recommended)](#using-just-recommended)
   - [Usage](#usage)
     - [Navigation](#navigation)
     - [Management Hierarchy](#management-hierarchy)
@@ -98,6 +99,7 @@ library-management-system/
 
 - **Java Development Kit (JDK) 21** or higher.
 - **Maven 3.9+** for dependency management.
+- **just** command runner (optional, recommended): https://github.com/casey/just
 - A terminal emulator with Unicode support (for optimal Lanterna rendering).
 
 ## Installation
@@ -120,6 +122,24 @@ library-management-system/
    ```bash
    mvn exec:java -Dexec.mainClass="com.library.Main"
    ```
+
+### Using just (Recommended)
+
+This repository includes a `justfile` so common tasks can be run with short commands:
+
+```bash
+just build    # mvn clean install
+just test     # mvn test
+just run      # run the TUI app
+just package  # mvn -DskipTests package
+just clean    # mvn clean
+```
+
+To see all available recipes:
+
+```bash
+just --list
+```
 
 ## Usage
 
